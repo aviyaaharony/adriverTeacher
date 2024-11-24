@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="132dp"
         android:fontFamily="sans-serif-medium"
         android:text="צור/צרי חשבון חדש"
         android:textColor="#000000"
@@ -34,12 +34,12 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title_text"
-        app:layout_constraintVertical_bias="0.109"
-        tools:layout_editor_absoluteX="25dp">
+        app:layout_constraintVertical_bias="0.124"
+        tools:layout_editor_absoluteX="16dp">
 
         <View
             android:layout_width="80dp"
-            android:layout_height="89dp"
+            android:layout_height="81dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="16dp"
             android:background="#DDDDDD" />
