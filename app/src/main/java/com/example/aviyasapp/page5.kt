@@ -6,15 +6,14 @@ import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-class teacher : AppCompatActivity() {
-    lateinit var button4:Button
+class page5 : AppCompatActivity() {
+    lateinit var button10: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.teacher)
-        button4=findViewById(R.id.button4)
-
+        setContentView(R.layout.page5)
+        button10=findViewById(R.id.button10)
 
     }
 }
