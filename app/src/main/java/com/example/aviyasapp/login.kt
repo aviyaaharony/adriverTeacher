@@ -1,5 +1,6 @@
 package com.example.aviyasapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextClock
@@ -20,5 +21,10 @@ class login : AppCompatActivity() {
         password=findViewById(R.id.password)
         create_acount_link=findViewById(R.id.create_account_link)
 
+        create_acount_link.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
