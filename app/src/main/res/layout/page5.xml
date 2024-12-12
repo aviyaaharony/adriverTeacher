@@ -4,46 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#ffe98f">
+    android:background="#FFEB99"
+    android:backgroundTint="#FFEB99">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="1030dp"
+        android:layout_height="348dp"
+        android:backgroundTint="#FFEB3B"
+        android:text="שיעורים עד שתוכל/י לגשת לטסט!"
+        android:textSize="96sp"
+        tools:layout_editor_absoluteX="337dp"
+        tools:layout_editor_absoluteY="1902dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="556dp"
-        android:layout_marginTop="772dp"
-        android:scaleX="2"
-        android:scaleY="2"
         android:text="נשארו לך עוד:"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="96sp"
+        tools:layout_editor_absoluteX="577dp"
+        tools:layout_editor_absoluteY="1131dp" />
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="257dp"
-        android:layout_height="136dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="1072dp"
+        android:layout_width="602dp"
+        android:layout_height="246dp"
         android:backgroundTint="#FFBD59"
         android:text="*מספר*"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="364dp"
-        android:layout_height="178dp"
-        android:layout_marginStart="484dp"
-        android:layout_marginTop="192dp"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:text="שיעורים עד שתוכל/י לגשת לטסט!"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        android:textSize="96sp"
+        tools:layout_editor_absoluteX="551dp"
+        tools:layout_editor_absoluteY="1262dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

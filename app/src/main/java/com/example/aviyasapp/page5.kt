@@ -19,6 +19,5 @@ class page5 : AppCompatActivity() {
         button10=findViewById(R.id.button10)
         textView4=findViewById(R.id.textView4)
         textView5=findViewById(R.id.textView5)
-
     }
 }

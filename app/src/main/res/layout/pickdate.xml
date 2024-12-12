@@ -6,31 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffe98f">
 
-    <Button
-        android:id="@+id/hour4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hour1"
-        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/hour6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toEndOf="@+id/hour5"
-        app:layout_constraintTop_toBottomOf="@+id/hour3"
-        tools:ignore="MissingConstraints" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -54,56 +30,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
-    <Button
-        android:id="@+id/hour1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/hour5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toEndOf="@+id/hour4"
-        app:layout_constraintTop_toBottomOf="@+id/hour2"
-        tools:ignore="." />
-
-    <Button
-        android:id="@+id/hour3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="72dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toEndOf="@+id/hour2"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/hour2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="21dp"
-        android:backgroundTint="#FFBD59"
-        android:text="."
-        android:textColorLink="#ffbd59"
-        app:layout_constraintStart_toEndOf="@+id/hour1"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="MissingConstraints" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="220dp"
+        android:layout_height="110dp"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="504dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
