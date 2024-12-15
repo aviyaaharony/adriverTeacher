@@ -1,3 +1,3 @@
 package com.example.aviyasapp
 
-data class ItemsViewModel(val image: Int, val text: String)
+data class ItemsViewModel(val text: String)

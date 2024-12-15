@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -36,7 +37,8 @@ android {
 }
 
 dependencies {
-
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -47,7 +49,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     // for adding recyclerview
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
-
     // for adding cardview
     implementation ("androidx.cardview:cardview:1.0.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-auth")
+
 }

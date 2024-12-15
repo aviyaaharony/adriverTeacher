@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "882068681258",
+    "project_id": "aviya-b0b08",
+    "storage_bucket": "aviya-b0b08.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882068681258:android:e3d35433122765f23f4953",
+        "android_client_info": {
+          "package_name": "com.example.aviyasapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCffxGeJAV1_vYgTRcvRGZsIBQZwjSqgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
