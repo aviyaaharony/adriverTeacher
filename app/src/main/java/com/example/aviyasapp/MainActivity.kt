@@ -56,6 +56,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
+
                         val intent = Intent(this, choise::class.java)
                         startActivity(intent)
                     } else {
@@ -66,6 +67,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                             "Authentication failed.",
                             Toast.LENGTH_SHORT,
                         ).show()
+
 
                     }
                 }

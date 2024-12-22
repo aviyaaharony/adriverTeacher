@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +20,7 @@ class login : AppCompatActivity() {
 
     lateinit var create_acount_link: TextView
     private lateinit var auth: FirebaseAuth
+    lateinit var button: Button
 
 
     @SuppressLint("MissingInflatedId")
@@ -28,31 +30,45 @@ class login : AppCompatActivity() {
         setContentView(R.layout.login)
 
         create_acount_link=findViewById(R.id.create_account_link)
+        button=findViewById(R.id.button)
 
-        create_acount_link.setOnClickListener {
-            var email=findViewById<EditText?>(R.id.email).text
-            var password=findViewById<EditText?>(R.id.password).text
-            auth= Firebase.auth
-            auth.signInWithEmailAndPassword(email.toString(), password.toString().toString())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
+
+    button.setOnClickListener {
+        var email = findViewById<EditText?>(R.id.email).text
+        var password = findViewById<EditText?>(R.id.password).text
+        if (!email.isEmpty()){
+        auth = Firebase.auth
+        auth.signInWithEmailAndPassword(email.toString(), password.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = auth.currentUser
+                    val intent = Intent(this, choise::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
                 }
+            }
 
+    }
+        else{
+            button.setOnClickListener {
+                Toast.makeText(
+                    baseContext,
+                    "empty value",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
         }
     }
+
+}
 }
