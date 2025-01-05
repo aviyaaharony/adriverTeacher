@@ -7,12 +7,11 @@
     android:background="#ffe98f">
 
 
-
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="84dp"
         android:unfocusedMonthDateColor="#00FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +21,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="4dp"
         android:scaleX="2"
         android:scaleY="2"
         android:text="שעות פנויות:"
@@ -36,7 +35,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendarView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-119dp" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-28dp"
+        tools:listitem="@layout/hour_aviable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
