@@ -1,6 +1,6 @@
-package com.example.aviyasapp
+package com.example.aviyasapp.Model
 
-class Lesson {
+class LessonModel {
     private var hour: String = ""
     private var date: String = ""
     private var isAvailable: Boolean = true

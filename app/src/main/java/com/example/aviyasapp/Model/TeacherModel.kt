@@ -1,10 +1,19 @@
-package com.example.aviyasapp
+package com.example.aviyasapp.Model
 
 class TeacherModel {
-    private var name: String? = null
+    private var name: String =""
     private var students = ArrayList<StudentModel>()
     private var hourOfWork = ArrayList<String>()
     private var price: Int = 0
+    private var lessons = ArrayList<Lesson>()
+
+    fun getLessons(): ArrayList<Lesson> {
+        return lessons
+    }
+
+    fun setLessons(value: ArrayList<Lesson>) {
+        lessons = value
+    }
 
     fun getName(): String {
         return name
@@ -43,6 +52,21 @@ class TeacherModel {
     }
 
     fun removeStudent(s: StudentModel){
-        for (i 1..)
+        students.remove(s)
     }
-}
+
+    fun removeLesson(l: Lesson) {
+        lessons.remove(l)
+    }
+
+    fun addHourOfWork(hour: String) {
+        hourOfWork.add(hour)
+    }
+    fun removeHourOfWork(hour: String) {
+        hourOfWork.remove(hour)
+    }
+
+
+
+    }
+

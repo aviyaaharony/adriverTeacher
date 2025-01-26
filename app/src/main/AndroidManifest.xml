@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AviyasApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".choise" />
-        <activity android:name=".pickdate" />
-        <activity android:name=".login" />
-        <activity android:name=".teacher" />
-        <activity android:name=".page5" />
+        <activity android:name=".View.choise" />
+        <activity android:name=".View.pickdate" />
+        <activity android:name=".View.login" />
+        <activity android:name=".View.teacher" />
+        <activity android:name=".View.page5" />
 
     </application>
 

@@ -1,9 +1,8 @@
-package com.example.aviyasapp
+package com.example.aviyasapp.View
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
-import android.text.Editable
 import android.text.format.DateFormat
 import android.util.Log
 import android.widget.Button
@@ -11,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

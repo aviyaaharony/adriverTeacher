@@ -1,10 +1,11 @@
-package com.example.aviyasapp
+package com.example.aviyasapp.View
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.aviyasapp.R
 
 class choise  : AppCompatActivity() {
     lateinit var setLesson: Button

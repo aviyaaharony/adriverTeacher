@@ -1,10 +1,10 @@
-package com.example.aviyasapp
+package com.example.aviyasapp.Model
 
 class StudentModel {
     private var name: String? = null
     private var state: Int = 0
     private var age: Double = 0.0
-    private var lessons= Array<Lesson>()
+    private var lessons= mutableListOf<Lesson>()
 
     fun getName(): String? {
         return name
@@ -30,12 +30,21 @@ class StudentModel {
         age = value
     }
 
-    fun getLessons(): Array<Lesson> {
+    fun getLessons(): List<Lesson>{
         return lessons
     }
 
     fun setLessons(value: Lesson) {
-        lessons = arrayOf(value)
+        lessons = mutableListOf(value)
     }
 
+    fun addLesson(l: Lesson) {
+        this.lessons.add(l)
+    }
+    fun removeLesson(l: Lesson){
+        lessons.remove(l)
+    }
+    fun signToTeacher(t: TeacherModel){
+        t.addStudent(this)
+    }
 }
