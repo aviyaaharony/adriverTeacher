@@ -5,13 +5,13 @@ class TeacherModel {
     private var students = ArrayList<StudentModel>()
     private var hourOfWork = ArrayList<String>()
     private var price: Int = 0
-    private var lessons = ArrayList<Lesson>()
+    private var lessons = ArrayList<LessonModel>()
 
-    fun getLessons(): ArrayList<Lesson> {
+    fun getLessons(): ArrayList<LessonModel> {
         return lessons
     }
 
-    fun setLessons(value: ArrayList<Lesson>) {
+    fun setLessons(value: ArrayList<LessonModel>) {
         lessons = value
     }
 
@@ -55,7 +55,7 @@ class TeacherModel {
         students.remove(s)
     }
 
-    fun removeLesson(l: Lesson) {
+    fun removeLesson(l: LessonModel) {
         lessons.remove(l)
     }
 

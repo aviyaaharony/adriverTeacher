@@ -4,7 +4,7 @@ class StudentModel {
     private var name: String? = null
     private var state: Int = 0
     private var age: Double = 0.0
-    private var lessons= mutableListOf<Lesson>()
+    private var lessons= mutableListOf<LessonModel>()
 
     fun getName(): String? {
         return name
@@ -30,18 +30,18 @@ class StudentModel {
         age = value
     }
 
-    fun getLessons(): List<Lesson>{
+    fun getLessons(): List<LessonModel>{
         return lessons
     }
 
-    fun setLessons(value: Lesson) {
+    fun setLessons(value: LessonModel) {
         lessons = mutableListOf(value)
     }
 
-    fun addLesson(l: Lesson) {
+    fun addLesson(l: LessonModel) {
         this.lessons.add(l)
     }
-    fun removeLesson(l: Lesson){
+    fun removeLesson(l: LessonModel){
         lessons.remove(l)
     }
     fun signToTeacher(t: TeacherModel){
