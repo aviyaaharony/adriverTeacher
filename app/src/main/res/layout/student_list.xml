@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe98f"
+    android:backgroundTint="#ffe98f"
+    android:foregroundTint="#ffe98f">
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="137dp"
+        android:layout_height="32dp"
+        android:text="רשימת תלמידים"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="109dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

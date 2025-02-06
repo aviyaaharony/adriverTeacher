@@ -15,7 +15,7 @@
         android:text="עריכה"
         android:textSize="16sp"
         tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="633dp" />
+        tools:layout_editor_absoluteY="604dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -51,14 +51,14 @@
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="264dp" />
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="237dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
         android:layout_height="335dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="297dp"
+        tools:layout_editor_absoluteY="269dp"
         tools:listitem="@layout/hour_aviable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
