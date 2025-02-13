@@ -10,10 +10,16 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import com.example.aviyasapp.Model.StudentModel
 import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class MainActivity<FirebaseUser> : AppCompatActivity() {
@@ -23,6 +29,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
     lateinit var makeAcount: Button
     lateinit var alreadyHave: TextView
     private lateinit var auth: FirebaseAuth
+    private val studentCollectionRef = Firebase.firestore.collection("student")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +40,21 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
 
         // getting the recyclerview by its id
 
+        suspend fun saveStudent(student: StudentModel) = coroutineScope(Dispatchers.IO).launch {
+                studentCollectionRef.add(student).await()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, "Succsfully saved data.", Toast.LENGTH_LONG).show()
+                    try {
 
-        enableEdgeToEdge()
+                    }catch (e: Exception){
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+
+                enableEdgeToEdge()
         val dateFormat = DateFormat.getDateFormat(
             applicationContext
         )
