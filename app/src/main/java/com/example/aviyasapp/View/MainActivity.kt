@@ -16,8 +16,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
@@ -29,7 +31,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
     lateinit var makeAcount: Button
     lateinit var alreadyHave: TextView
     private lateinit var auth: FirebaseAuth
-    private val studentCollectionRef = Firebase.firestore.collection("student")
+    private val userCollectionRef = Firebase.firestore.collection("user")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,19 +41,6 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         auth = Firebase.auth
 
         // getting the recyclerview by its id
-
-        suspend fun saveStudent(student: StudentModel) = coroutineScope(Dispatchers.IO).launch {
-                studentCollectionRef.add(student).await()
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "Succsfully saved data.", Toast.LENGTH_LONG).show()
-                    try {
-
-                    }catch (e: Exception){
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
 
 
                 enableEdgeToEdge()
@@ -76,7 +65,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-
+                        saveUser(email,false)
                         val intent = Intent(this, choise::class.java)
                         startActivity(intent)
                     } else {
@@ -97,6 +86,9 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
             val intent = Intent(this, login::class.java)
             startActivity(intent)
         }
+
+        }
+        private fun saveUser(email:String,isTeacher:Boolean) = CoroutineScope(Dispatchers.IO).launch {
 
         }
     }

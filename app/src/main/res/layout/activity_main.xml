@@ -25,8 +25,8 @@
 
     <LinearLayout
         android:id="@+id/main_container"
-        android:layout_width="363dp"
-        android:layout_height="374dp"
+        android:layout_width="370dp"
+        android:layout_height="391dp"
         android:layout_below="@id/title_text"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
@@ -47,14 +47,14 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="366dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/id_number"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="54dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="תעודת זהות"
@@ -63,17 +63,11 @@
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="match_parent"
-                android:layout_height="61dp"
+                android:layout_height="56dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="שם משתמש"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="choise.xml" />
 
             <EditText
                 android:id="@+id/password"
@@ -88,20 +82,27 @@
             <EditText
                 android:id="@+id/birthdate"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="57dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="תאריך לידה"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColorLink="#000000" />
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="59dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="כתובת מייל"
                 android:inputType="textEmailAddress"
                 android:padding="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:text="מורה" />
         </LinearLayout>
     </LinearLayout>
 
@@ -122,8 +123,8 @@
         android:id="@+id/alreadyHave"
         android:layout_width="157dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="40dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="כבר קיים חשבון? לחץ כאן"
