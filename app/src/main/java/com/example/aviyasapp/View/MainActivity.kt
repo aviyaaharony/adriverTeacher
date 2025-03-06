@@ -43,7 +43,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         // getting the recyclerview by its id
 
 
-                enableEdgeToEdge()
+        enableEdgeToEdge()
         val dateFormat = DateFormat.getDateFormat(
             applicationContext
         )
@@ -55,8 +55,10 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         makeAcount = findViewById(R.id.makeAcount)
         alreadyHave = findViewById(R.id.alreadyHave)
         makeAcount.setOnClickListener {
-            var email  = findViewById<EditText?>(R.id.email).text.toString()
-            var  password = findViewById<EditText?>(R.id.password).text.toString()
+            var email = findViewById<EditText?>(R.id.email).text.toString()
+            var password = findViewById<EditText?>(R.id.password).text.toString()
+            saveUser(email, isTeacher = false)
+
 
 
             auth.createUserWithEmailAndPassword(email.toString(), password.toString())
@@ -65,7 +67,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        saveUser(email,false)
+                        saveUser(email, false)
                         val intent = Intent(this, choise::class.java)
                         startActivity(intent)
                     } else {
@@ -85,10 +87,30 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         alreadyHave.setOnClickListener {
             val intent = Intent(this, login::class.java)
             startActivity(intent)
-        }
 
         }
-        private fun saveUser(email:String,isTeacher:Boolean) = CoroutineScope(Dispatchers.IO).launch {
 
-        }
     }
+
+    private fun saveUser(email: String, isTeacher: Boolean) =
+        CoroutineScope(Dispatchers.IO).launch {
+            if (!isTeacher) {
+                try {
+                    userCollectionRef.add(StudentModel).await()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "successfully saved data.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            }
+        }
+}
