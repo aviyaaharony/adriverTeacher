@@ -1,10 +1,12 @@
 package com.example.aviyasapp.Model
 
-class StudentModel {
-    private var name: String? = null
+class StudentModel(email: String, isTeacher: Boolean) {
+    private var name: String = ""
     private var state: Int = 0
     private var age: Double = 0.0
     private var lessons= mutableListOf<LessonModel>()
+    private var email: String = ""
+    private var isTeacher: Boolean = false
 
     fun getName(): String? {
         return name
@@ -36,6 +38,20 @@ class StudentModel {
 
     fun setLessons(value: LessonModel) {
         lessons = mutableListOf(value)
+    }
+    fun getEmail(): String? {
+        return email
+    }
+
+    fun setEmail(value: String) {
+        email = value
+    }
+    fun getIsTeacher(): Boolean? {
+        return isTeacher
+    }
+
+    fun setIsTeacher(value: Boolean) {
+        isTeacher = value
     }
 
     fun addLesson(l: LessonModel) {

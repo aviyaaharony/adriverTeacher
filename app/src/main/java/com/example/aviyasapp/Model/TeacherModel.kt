@@ -1,6 +1,6 @@
 package com.example.aviyasapp.Model
 
-class TeacherModel {
+class TeacherModel(email: String, isTeacher: Boolean) {
     private var name: String =""
     private var students = ArrayList<StudentModel>()
     private var hourOfWork = ArrayList<String>()

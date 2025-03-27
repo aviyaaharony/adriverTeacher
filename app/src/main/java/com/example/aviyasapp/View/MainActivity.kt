@@ -6,11 +6,13 @@ import android.content.Intent
 import android.text.format.DateFormat
 import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import com.example.aviyasapp.Model.StudentModel
+import com.example.aviyasapp.Model.TeacherModel
 import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,7 +20,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -30,8 +31,11 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
     lateinit var birthdate: EditText
     lateinit var makeAcount: Button
     lateinit var alreadyHave: TextView
+    lateinit var checkBox: CheckBox
     private lateinit var auth: FirebaseAuth
-    private val userCollectionRef = Firebase.firestore.collection("user")
+    private val userCollectionRef = Firebase.firestore.collection("Student")
+    private val teacherCollectionRef = Firebase.firestore.collection("teacher")
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,11 +58,10 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         birthdate = findViewById(R.id.birthdate)
         makeAcount = findViewById(R.id.makeAcount)
         alreadyHave = findViewById(R.id.alreadyHave)
+        checkBox = findViewById(R.id.checkBox)
         makeAcount.setOnClickListener {
             var email = findViewById<EditText?>(R.id.email).text.toString()
             var password = findViewById<EditText?>(R.id.password).text.toString()
-            saveUser(email, isTeacher = false)
-
 
 
             auth.createUserWithEmailAndPassword(email.toString(), password.toString())
@@ -67,7 +70,13 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        saveUser(email, false)
+                        if(checkBox.isActivated) {
+                            saveUser(email, isTeacher = false)
+
+                        }
+                        else{
+                            saveTeacher(email, isTeacher = true)
+                        }
                         val intent = Intent(this, choise::class.java)
                         startActivity(intent)
                     } else {
@@ -89,9 +98,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
             startActivity(intent)
 
         }
-        makeAcount.setOnClickListener {
 
-        }
     }
 
 
@@ -101,6 +108,28 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
             if (!isTeacher) {
                 try {
                     userCollectionRef.add(student).await()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "successfully saved data.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            }
+        }
+    private fun saveTeacher(email: String, isTeacher: Boolean) =
+        CoroutineScope(Dispatchers.IO).launch {
+            val teacher = TeacherModel(email, isTeacher)
+            if (isTeacher) {
+                try {
+                    teacherCollectionRef.add(teacher).await()
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@MainActivity,
