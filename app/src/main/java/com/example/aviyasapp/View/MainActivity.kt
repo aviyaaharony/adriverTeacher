@@ -17,12 +17,14 @@ import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.lang.StringBuilder
 
 
 class MainActivity<FirebaseUser> : AppCompatActivity() {
@@ -35,7 +37,6 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val userCollectionRef = Firebase.firestore.collection("Student")
     private val teacherCollectionRef = Firebase.firestore.collection("teacher")
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,11 +71,10 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        if(checkBox.isActivated) {
+                        if (checkBox.isActivated) {
                             saveUser(email, isTeacher = false)
 
-                        }
-                        else{
+                        } else {
                             saveTeacher(email, isTeacher = true)
                         }
                         val intent = Intent(this, choise::class.java)
@@ -124,6 +124,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
 
             }
         }
+
     private fun saveTeacher(email: String, isTeacher: Boolean) =
         CoroutineScope(Dispatchers.IO).launch {
             val teacher = TeacherModel(email, isTeacher)
@@ -146,4 +147,37 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
 
             }
         }
+
+    private fun retrieveStudent() = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val querySnapshot = userCollectionRef.get().await()
+            val sb = StringBuilder()
+            for (document in querySnapshot.documents) {
+                val student = document.toObject<StudentModel>()
+                sb.append("$student\n")
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+
+            }
+
+        }
+    }
+
+        private fun retrieveTeacher () = CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val querySnapshot = teacherCollectionRef.get().await()
+                val sb = StringBuilder()
+                for (document in querySnapshot.documents) {
+                    val teacher = document.toObject<StudentModel>()
+                    sb.append("$teacher\n")
+                }
+            }catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText( this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+
+                }
+
+            }
 }

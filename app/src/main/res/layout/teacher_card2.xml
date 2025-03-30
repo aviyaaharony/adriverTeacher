@@ -1,59 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFEB3B">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="#ffe98f"
+        android:backgroundTint="#ffe98f"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/teacher_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/ic_teacher"
-            android:scaleType="centerCrop"
             android:layout_gravity="center"
-></ImageView>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_teacher"></ImageView>
+
         <TextView
             android:id="@+id/teacher_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
             android:text="אבי כהן"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:gravity="center"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/teacher_experience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10 שנות ניסיון"
-            android:textSize="16sp"
-            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="4dp"
             android:gravity="center"
-            android:layout_marginTop="4dp"/>
+            android:text="10 שנות ניסיון"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/teacher_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
             android:text='150 ש\"ח לשיעור'
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="4dp"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="הרשמה לשיעור"
             android:layout_marginTop="12dp"
-            android:gravity="center"/>
+            android:backgroundTint="#ffbd59"
+            android:gravity="center"
+            android:text="הרשמה לשיעור" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
