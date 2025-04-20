@@ -18,7 +18,7 @@ class CustomAdapter(private val mList: List<TeacherModel>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
-        holder.textView.text = ItemsViewModel.
+        //holder.textView.text = ItemsViewModel.
     }
 
     override fun getItemCount(): Int {

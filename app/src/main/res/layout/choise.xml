@@ -12,9 +12,9 @@
         android:layout_width="207dp"
         android:layout_height="76dp"
         android:layout_marginStart="102dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="49dp"
         android:layout_marginEnd="102dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="151dp"
         android:backgroundTint="#ffbd59"
         android:text="לוח שנה"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,29 +28,42 @@
         android:layout_width="207dp"
         android:layout_height="76dp"
         android:layout_marginStart="102dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="102dp"
-        android:layout_marginBottom="20dp"
         android:backgroundTint="#ffbd59"
         android:text="מצב הרישיון שלי"
-        app:layout_constraintBottom_toTopOf="@+id/setLesson2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setLesson" />
+        app:layout_constraintTop_toBottomOf="@+id/setLesson3" />
 
     <Button
-        android:id="@+id/setLesson"
+        android:id="@+id/setTeacher"
         android:layout_width="207dp"
         android:layout_height="76dp"
         android:layout_marginStart="102dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="139dp"
         android:layout_marginEnd="102dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="37dp"
         android:backgroundTint="#ffbd59"
-        android:text="קביעת שיעור"
-        app:layout_constraintBottom_toTopOf="@+id/state"
+        android:text="קביעת מורה"
+        app:layout_constraintBottom_toTopOf="@+id/setLesson3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/setLesson3"
+        android:layout_width="207dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="102dp"
+        android:backgroundTint="#ffbd59"
+        android:text="קביעת שיעור"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTeacher" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

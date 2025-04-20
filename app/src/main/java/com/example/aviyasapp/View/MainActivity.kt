@@ -170,14 +170,15 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                 val querySnapshot = teacherCollectionRef.get().await()
                 val sb = StringBuilder()
                 for (document in querySnapshot.documents) {
-                    val teacher = document.toObject<StudentModel>()
+                    val teacher = document.toObject<TeacherModel>()
                     sb.append("$teacher\n")
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText( this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
 
                 }
 
             }
+        }
 }

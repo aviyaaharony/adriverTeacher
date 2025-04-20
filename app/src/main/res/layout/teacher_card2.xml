@@ -19,7 +19,7 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_teacher"></ImageView>
+            android:src="@drawable/ic_launcher_foreground"></ImageView>
 
         <TextView
             android:id="@+id/teacher_name"

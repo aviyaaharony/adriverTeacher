@@ -11,28 +11,35 @@
         android:id="@+id/textView5"
         android:layout_width="205dp"
         android:layout_height="69dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="300dp"
         android:backgroundTint="#FFEB3B"
         android:text="שיעורים עד שתוכל/י לגשת לטסט!"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="362dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button10" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="181dp"
         android:layout_height="43dp"
+        android:layout_marginTop="251dp"
+        android:layout_marginEnd="115dp"
         android:text="נשארו לך עוד:"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="251dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button10"
         android:layout_width="154dp"
         android:layout_height="68dp"
+        android:layout_marginStart="128dp"
         android:backgroundTint="#FFBD59"
         android:text="*מספר*"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="294dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
