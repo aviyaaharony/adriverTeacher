@@ -27,6 +27,7 @@
         <activity android:name=".View.login" />
         <activity android:name=".View.teacher" />
         <activity android:name=".View.page5" />
+        <activity android:name=".View.pickTeacher" />
 
     </application>
 
