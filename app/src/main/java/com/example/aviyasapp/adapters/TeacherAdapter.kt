@@ -28,8 +28,8 @@ class TeacherAdapter(
 
     override fun onBindViewHolder(holder: TeacherViewHolder, position: Int) {
         val teacher = teacherList[position]
-        holder.teacherName.text = teacher.getName().toString()
-        holder.teacherPrice.text = teacher.getPrice().toString()
+        holder.teacherName.text = teacher.name.toString()
+        holder.teacherPrice.text = teacher.price.toString()
         holder.registerButton.setOnClickListener {
             onRegisterClick(teacher)
         }

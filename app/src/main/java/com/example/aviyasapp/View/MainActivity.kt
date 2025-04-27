@@ -127,7 +127,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
 
     private fun saveTeacher(email: String, isTeacher: Boolean) =
         CoroutineScope(Dispatchers.IO).launch {
-            val teacher = TeacherModel(email, isTeacher)
+            val teacher = TeacherModel(email)
             if (isTeacher) {
                 try {
                     teacherCollectionRef.add(teacher).await()

@@ -1,57 +1,19 @@
 package com.example.aviyasapp.Model
 
-class TeacherModel(email: String, isTeacher: Boolean) {
-    private var name: String =""
-    private var students = ArrayList<StudentModel>()
-    private var hourOfWork = ArrayList<String>()
-    private var price: Int = 0
-    private var lessons = ArrayList<LessonModel>()
+data class TeacherModel(
+    var name: String = "",
+    var students: ArrayList<StudentModel> = ArrayList(),
+    var hourOfWork: ArrayList<String> = ArrayList(),
+    var price: Int = 0,
+    var lessons: ArrayList<LessonModel> = ArrayList()
+) {
 
-    fun getLessons(): ArrayList<LessonModel> {
-        return lessons
-    }
-
-    fun setLessons(value: ArrayList<LessonModel>) {
-        lessons = value
-    }
-
-    fun getName(): String {
-        return name
-    }
-
-    fun setName(value: String) {
-        name = value
-    }
-
-    fun getStudents(): ArrayList<StudentModel> {
-        return students
-    }
-
-    fun setStudents(value: ArrayList<StudentModel>) {
-        students = value
-    }
-
-    fun getHourOfWork(): ArrayList<String> {
-        return hourOfWork
-    }
-
-    fun setHourOfWork(value: ArrayList<String>) {
-        hourOfWork = value
-    }
-
-    fun getPrice(): Int {
-        return price
-    }
-
-    fun setPrice(value: Int) {
-        price = value
-    }
-
-    fun addStudent(s: StudentModel){
+    // פונקציות להוספה והסרה של תלמידים ושיעורים
+    fun addStudent(s: StudentModel) {
         students.add(s)
     }
 
-    fun removeStudent(s: StudentModel){
+    fun removeStudent(s: StudentModel) {
         students.remove(s)
     }
 
@@ -62,11 +24,8 @@ class TeacherModel(email: String, isTeacher: Boolean) {
     fun addHourOfWork(hour: String) {
         hourOfWork.add(hour)
     }
+
     fun removeHourOfWork(hour: String) {
         hourOfWork.remove(hour)
     }
-
-
-
-    }
-
+}
