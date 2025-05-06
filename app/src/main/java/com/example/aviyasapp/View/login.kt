@@ -35,7 +35,7 @@ class login : AppCompatActivity() {
 
     button.setOnClickListener {
         var email = findViewById<EditText?>(R.id.email).text
-        var password = findViewById<EditText?>(R.id.password).text
+        var password = findViewById<EditText?>(R.id.full_name).text
         if (!email.isEmpty()){
         auth = Firebase.auth
         auth.signInWithEmailAndPassword(email.toString(), password.toString())

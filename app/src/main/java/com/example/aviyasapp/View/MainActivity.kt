@@ -54,15 +54,15 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         )
 
         setContentView(R.layout.activity_main)
-        id_number = findViewById(R.id.id_number)
+        id_number = findViewById(R.id.price)
         username = findViewById(R.id.email)
         birthdate = findViewById(R.id.birthdate)
         makeAcount = findViewById(R.id.makeAcount)
         alreadyHave = findViewById(R.id.alreadyHave)
         checkBox = findViewById(R.id.checkBox)
-        makeAcount.setOnClickListener {
+         makeAcount.setOnClickListener {
             var email = findViewById<EditText?>(R.id.email).text.toString()
-            var password = findViewById<EditText?>(R.id.password).text.toString()
+            var password = findViewById<EditText?>(R.id.full_name).text.toString()
 
 
             auth.createUserWithEmailAndPassword(email.toString(), password.toString())
@@ -73,12 +73,13 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         val user = auth.currentUser
                         if (checkBox.isActivated) {
                             saveUser(email, isTeacher = false)
-
+                            val intent = Intent(this, choise::class.java)
+                            startActivity(intent)
                         } else {
-                            saveTeacher(email, isTeacher = true)
+                            val intent = Intent(this,TeacherInfo::class.java)
+                            startActivity(intent)
                         }
-                        val intent = Intent(this, choise::class.java)
-                        startActivity(intent)
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)

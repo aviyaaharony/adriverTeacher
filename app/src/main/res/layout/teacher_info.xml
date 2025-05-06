@@ -1,96 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFEB99"
     android:backgroundTint="#FFEB99">
 
-    <LinearLayout
-        android:id="@+id/main_container"
+    <Button
+        android:id="@+id/register_button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginBottom="244dp"
+        android:backgroundTint="#ffbd59"
+        android:gravity="center"
+        android:text="שלח פרטים"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title_text"
-        app:layout_constraintVertical_bias="0.142"
-        android:layout_width="370dp"
-        android:layout_height="391dp"
-        android:layout_below="@id/title_text"
-        android:background="@drawable/rounded_background"
-        android:backgroundTint="#00FFFFFF"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="283dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <View
-            android:layout_width="80dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="380dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="#FFFFFF"
+            android:hint="מחיר לשיעור"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/place"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="@color/white"
+            android:hint="יישוב"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/full_name"
+            android:layout_width="match_parent"
             android:layout_height="81dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="16dp"
-            android:background="#DDDDDD" />
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="@color/white"
+            android:hint="שם מלא"
+            android:inputType="textPassword"
+            android:padding="10dp" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="366dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/id_number"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:backgroundTint="#FFFFFF"
-                android:hint="תעודת זהות"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:backgroundTint="@color/white"
-                android:hint="שם משתמש"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:backgroundTint="@color/white"
-                android:hint="סיסמא"
-                android:inputType="textPassword"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/birthdate"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="תאריך לידה"
-                android:padding="10dp"
-                android:textColorLink="#000000" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="59dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="כתובת מייל"
-                android:inputType="textEmailAddress"
-                android:padding="10dp" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:text="מורה" />
-        </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="264dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="92dp"
+        android:text="מלאו את הפרטים הבאים:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

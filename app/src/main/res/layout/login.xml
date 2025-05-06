@@ -57,14 +57,14 @@
             android:hint="כתובת מייל"
 
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/password"
+            app:layout_constraintBottom_toTopOf="@+id/full_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/full_name"
             android:layout_width="207dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"

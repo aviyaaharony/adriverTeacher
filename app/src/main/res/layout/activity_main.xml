@@ -52,7 +52,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/id_number"
+                android:id="@+id/price"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginBottom="8dp"
@@ -61,7 +61,7 @@
                 android:padding="10dp" />
 
             <EditText
-                android:id="@+id/userName"
+                android:id="@+id/place"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="8dp"
@@ -70,7 +70,7 @@
                 android:padding="10dp" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/full_name"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginBottom="8dp"
