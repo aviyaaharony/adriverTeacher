@@ -8,48 +8,37 @@
     android:backgroundTint="#ffe98f">
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/setLessons"
         android:layout_width="117dp"
         android:layout_height="105dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="310dp"
         android:backgroundTint="#ffbd59"
         android:radius="0dp"
-        android:text="לוח שנה"
-        android:textSize="20sp"
+        android:text="שיעורים שנקבעו"
+        android:textSize="22sp"
         app:cornerRadius="10dp"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="99dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentList" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/studentList"
         android:layout_width="117dp"
         android:layout_height="105dp"
-        android:backgroundTint="#ffbd59"
-        android:radius="0dp"
-        android:text="Button"
-        app:cornerRadius="10dp"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="254dp" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="117dp"
-        android:layout_height="105dp"
-        android:backgroundTint="#ffbd59"
-        android:radius="0dp"
-        android:text="Button"
-        app:cornerRadius="10dp"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="254dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="117dp"
-        android:layout_height="105dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="349dp"
+        android:layout_marginEnd="165dp"
         android:backgroundTint="#ffbd59"
         android:radius="0dp"
         android:text="רשימת תלמידים"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:cornerRadius="10dp"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="99dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

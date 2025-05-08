@@ -1,7 +1,10 @@
 package com.example.aviyasapp.Model
 
+import android.provider.ContactsContract.CommonDataKinds.Email
+
 data class TeacherModel(
     var name: String = "",
+    var email: String = "",
     var price: Int = 0,
     var location :String = "",
     var students: ArrayList<StudentModel> = ArrayList(),

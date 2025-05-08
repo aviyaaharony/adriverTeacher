@@ -64,7 +64,6 @@
             android:background="@drawable/edit_text_background"
             android:backgroundTint="@color/white"
             android:hint="שם מלא"
-            android:inputType="textPassword"
             android:padding="10dp" />
 
     </LinearLayout>

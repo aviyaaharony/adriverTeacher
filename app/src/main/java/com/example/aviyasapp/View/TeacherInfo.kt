@@ -1,5 +1,6 @@
 package com.example.aviyasapp.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -36,17 +37,34 @@ class TeacherInfo : AppCompatActivity() {
         auth = Firebase.auth
         register_button = findViewById<Button?>(R.id.register_button12)
 
+        var email = intent.getStringExtra("email")
+        register_button.setOnClickListener {
+            full_name = findViewById<EditText>(R.id.full_name).text.toString()
+            price = findViewById<EditText>(R.id.price).text.toString()
+            place = findViewById<EditText>(R.id.place).text.toString()
 
-        register_button.setOnClickListener{
-            full_name = findViewById<View?>(R.id.full_name).toString()
-            price = findViewById<View?>(R.id.price).toString()
-            place = findViewById<View?>(R.id.place).toString()
-            saveTeacher(full_name ,price,place )
+            // בדיקה שהשדות לא ריקים
+            if (full_name.isBlank() || price.isBlank() || place.isBlank()) {
+                Toast.makeText(this, "נא למלא את כל השדות", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // נסיון להמיר מחיר למספר
+            val priceInt = price.toIntOrNull()
+            if (priceInt == null) {
+                Toast.makeText(this, "המחיר חייב להיות מספר", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            saveTeacher(email?: "",full_name, price, place)
+            val intent = Intent(this@TeacherInfo, TeacherMain::class.java)
+            startActivity(intent)
         }
+
     }
-    private fun saveTeacher(email: String, price: String,place :String) =
+    private fun saveTeacher(email: String,name:String, price: String,place :String) =
         CoroutineScope(Dispatchers.IO).launch {
-            val teacher = TeacherModel(email,price.toInt(),place)
+            val teacher = TeacherModel(name,email,price.toInt(),place)
                 try {
                     teacherCollectionRef.add(teacher).await()
                     withContext(Dispatchers.Main) {
@@ -55,6 +73,7 @@ class TeacherInfo : AppCompatActivity() {
                             "successfully saved data.",
                             Toast.LENGTH_LONG
                         ).show()
+
                     }
 
                 } catch (e: Exception) {

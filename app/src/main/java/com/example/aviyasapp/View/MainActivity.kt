@@ -77,6 +77,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                             startActivity(intent)
                         } else {
                             val intent = Intent(this,TeacherInfo::class.java)
+                            intent.putExtra("email",email)
                             startActivity(intent)
                         }
 
