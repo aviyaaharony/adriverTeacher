@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -27,8 +28,22 @@ class TeacherInfo : AppCompatActivity() {
     lateinit var full_name: String
     lateinit var register_button: Button
     lateinit var textView6: TextView
+    lateinit var textView9: TextView
+    lateinit var textView10: TextView
+    lateinit var textView11: TextView
+    lateinit var textView12: TextView
+    lateinit var textView13: TextView
+    lateinit var textView14: TextView
+    lateinit var checkBox5: CheckBox
+    lateinit var checkBox6: CheckBox
+    lateinit var checkBox7: CheckBox
+    lateinit var checkBox8: CheckBox
+    lateinit var checkBox9: CheckBox
+    lateinit var checkBox: CheckBox
+
     private val teacherCollectionRef = Firebase.firestore.collection("teacher")
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +57,21 @@ class TeacherInfo : AppCompatActivity() {
             full_name = findViewById<EditText>(R.id.full_name).text.toString()
             price = findViewById<EditText>(R.id.price).text.toString()
             place = findViewById<EditText>(R.id.place).text.toString()
+            textView6 = findViewById<EditText>(R.id.textView6)
+            textView9 = findViewById<EditText>(R.id.textView9)
+            textView10 = findViewById<EditText>(R.id.textView10)
+            textView11 = findViewById<EditText>(R.id.textView11)
+            textView12 = findViewById<EditText>(R.id.textView12)
+            textView13 = findViewById<EditText>(R.id.textView13)
+            textView14 = findViewById<EditText>(R.id.textView14)
+            checkBox5 = findViewById(R.id.checkBox5)
+            checkBox6 = findViewById(R.id.checkBox6)
+            checkBox7 = findViewById(R.id.checkBox7)
+            checkBox8 = findViewById(R.id.checkBox8)
+            checkBox9 = findViewById(R.id.checkBox9)
+            checkBox = findViewById(R.id.checkBox)
+
+
 
             // בדיקה שהשדות לא ריקים
             if (full_name.isBlank() || price.isBlank() || place.isBlank()) {
