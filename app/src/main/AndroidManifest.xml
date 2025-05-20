@@ -30,6 +30,7 @@
         <activity android:name=".View.TeacherInfo" />
         <activity android:name=".View.pickTeacher" />
         <activity android:name=".View.TeacherMain" />
+        <activity android:name=".View.StudentListActivity" />
 
     </application>
 

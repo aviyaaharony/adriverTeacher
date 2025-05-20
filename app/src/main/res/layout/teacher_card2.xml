@@ -22,7 +22,7 @@
             android:src="@drawable/ic_launcher_foreground"></ImageView>
 
         <TextView
-            android:id="@+id/teacher_name"
+            android:id="@+id/student_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -52,7 +52,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/remove_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

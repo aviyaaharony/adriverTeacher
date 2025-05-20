@@ -1,7 +1,10 @@
 package com.example.aviyasapp.View
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
+import android.util.Log
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -68,7 +71,7 @@ class TeacherInfo : AppCompatActivity() {
             }
 
             val teacherId = currentUser.uid
-
+            Log.d(TAG,"aa ${teacherId},${fullName},${email} ")
             // שמירה של כל הנתונים, כולל הימים, בפעולה אחת
             saveTeacherToDocument(teacherId, fullName, email, priceInt, place, selectedDays)
 

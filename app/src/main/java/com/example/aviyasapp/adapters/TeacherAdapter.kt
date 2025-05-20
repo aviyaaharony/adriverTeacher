@@ -15,9 +15,9 @@ class TeacherAdapter(
 ) : RecyclerView.Adapter<TeacherAdapter.TeacherViewHolder>() {
 
     class TeacherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val teacherName: TextView = itemView.findViewById(R.id.teacher_name)
+        val teacherName: TextView = itemView.findViewById(R.id.student_name)
         val teacherPrice: TextView = itemView.findViewById(R.id.teacher_location)
-        val registerButton: Button = itemView.findViewById(R.id.register_button)
+        val registerButton: Button = itemView.findViewById(R.id.remove_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeacherViewHolder {

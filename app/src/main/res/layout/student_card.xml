@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:backgroundTint="#00FFFFFF"
-            android:text="+"
+            android:text="-"
             android:textSize="27sp" />
 
         <!-- תמונת המורה -->
@@ -39,19 +39,11 @@
                 android:id="@+id/student_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="שם המורה"
+                android:text="שם התלמיד"
                 android:textColor="#FFFFFF"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/teacher_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="מחיר לשיעור: 170"
-                android:textColor="#FDFAFA"
-                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

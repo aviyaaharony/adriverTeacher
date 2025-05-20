@@ -22,8 +22,9 @@ class TeacherMain  : AppCompatActivity() {
         auth = Firebase.auth
         studentList = findViewById<Button?>(R.id.studentList)
         setLessons = findViewById<Button?>(R.id.setLessons)
+
         studentList.setOnClickListener {
-            val intent = Intent(this, pickdate::class.java)
+            val intent = Intent(this, StudentListActivity::class.java)
             startActivity(intent)
         }
         setLessons.setOnClickListener {
