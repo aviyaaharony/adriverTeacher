@@ -89,11 +89,12 @@ class TeacherInfo : AppCompatActivity() {
         selectedDays: List<String>
     ) = CoroutineScope(Dispatchers.IO).launch {
         val teacherData = hashMapOf(
-            "fullName" to name,
+            "name" to name,
             "email" to email,
             "price" to price,
             "place" to place,
-            "hourOfWork" to selectedDays
+            "hourOfWork" to selectedDays,
+            "uid" to uid
         )
 
         try {

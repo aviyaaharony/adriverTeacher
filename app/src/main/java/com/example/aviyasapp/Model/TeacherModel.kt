@@ -1,18 +1,20 @@
 package com.example.aviyasapp.Model
 
+import StudentModel
 import android.provider.ContactsContract.CommonDataKinds.Email
 
 data class TeacherModel(
     var name: String = "",
+    var uid: String = "",
     var email: String = "",
     var price: Int = 0,
-    var location :String = "",
+    var location: String = "",
     var students: ArrayList<StudentModel> = ArrayList(),
     var hourOfWork: ArrayList<String> = ArrayList(),
-    var lessons: ArrayList<LessonModel> = ArrayList(),
-
-
+    var lessons: ArrayList<LessonModel> = ArrayList()
 ) {
+    // Explicit no-argument constructor for Firebase
+    constructor() : this("", "","", 0, "", ArrayList(), ArrayList(), ArrayList())
 
     // פונקציות להוספה והסרה של תלמידים ושיעורים
     fun addStudent(s: StudentModel) {

@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import com.example.aviyasapp.Model.StudentModel
+import StudentModel
 import com.example.aviyasapp.Model.TeacherModel
 import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
@@ -33,6 +33,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
     lateinit var birthdate: EditText
     lateinit var makeAcount: Button
     lateinit var alreadyHave: TextView
+    lateinit var alreadyHave2: TextView
     lateinit var checkBox: CheckBox
     private lateinit var auth: FirebaseAuth
     private val userCollectionRef = Firebase.firestore.collection("Student")
@@ -59,6 +60,8 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         birthdate = findViewById(R.id.birthdate)
         makeAcount = findViewById(R.id.makeAcount)
         alreadyHave = findViewById(R.id.alreadyHave)
+        alreadyHave2 = findViewById(R.id.alreadyHave2)
+
         checkBox = findViewById(R.id.checkBox)
          makeAcount.setOnClickListener {
             var email = findViewById<EditText?>(R.id.email).text.toString()
@@ -71,7 +74,7 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        if (checkBox.isActivated) {
+                        if (!checkBox.isChecked) {
                             saveUser(email, isTeacher = false)
                             val intent = Intent(this, choise::class.java)
                             startActivity(intent)
@@ -98,9 +101,11 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
         alreadyHave.setOnClickListener {
             val intent = Intent(this, login::class.java)
             startActivity(intent)
-
         }
-
+        alreadyHave2.setOnClickListener {
+            val intent = Intent(this, loginTeacher::class.java)
+            startActivity(intent)
+        }
     }
 
 

@@ -14,8 +14,8 @@
         android:backgroundTint="@color/white"
         android:text="עריכה"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="604dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="618dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -25,20 +25,20 @@
         android:textColor="@color/white"
         android:textColorLink="#000000"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="81dp" />
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="105dp" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="158dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginEnd="144dp"
         android:backgroundTint="#FFBD59"
         android:text="."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <TextView
         android:id="@+id/textView7"
@@ -51,13 +51,13 @@
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="237dp" />
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="236dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
         android:layout_height="335dp"
-        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="269dp"
         tools:listitem="@layout/hour_aviable" />
 

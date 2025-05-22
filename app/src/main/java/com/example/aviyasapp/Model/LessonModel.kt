@@ -1,5 +1,7 @@
 package com.example.aviyasapp.Model
 
+import StudentModel
+
 class LessonModel {
     private var hour: String = ""
     private var date: String = ""

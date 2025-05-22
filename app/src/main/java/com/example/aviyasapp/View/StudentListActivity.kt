@@ -6,7 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.aviyasapp.Model.StudentModel
+import StudentModel
 import com.example.aviyasapp.Model.TeacherModel
 import com.example.aviyasapp.R
 import com.example.aviyasapp.adapters.StudentAdapter
@@ -32,7 +32,7 @@ class StudentListActivity  : AppCompatActivity() {
         setContentView(R.layout.student_list)
         enableEdgeToEdge()
         auth = Firebase.auth
-        studentsRecyclerView = findViewById(R.id.sl)
+        studentsRecyclerView = findViewById(R.id.ll)
         studentsRecyclerView.layoutManager = LinearLayoutManager(this)
         fetchStudents()
     }
@@ -55,15 +55,13 @@ class StudentListActivity  : AppCompatActivity() {
     private suspend fun retrieveStudents(): List<StudentModel> {
         val teacherCollectionRef = com.google.firebase.Firebase.firestore.collection("teacher").document(
             auth.currentUser?.uid.toString())
-        val studentList = mutableListOf<StudentModel>()
+        var studentList = mutableListOf<StudentModel>()
         val querySnapshot = teacherCollectionRef.get().await()
 
         val teacher = querySnapshot.toObject<TeacherModel>()
         if (teacher != null) {
-            for (document in teacher.students) {
-                    studentList.add(document)
+            studentList = teacher.students
 
-            }
         }
         return studentList
     }

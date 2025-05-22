@@ -25,25 +25,25 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class TeacherAdapter(
+class LessonAdapter(
     private val teacherList: List<TeacherModel>,
     private val s : StudentModel,
     private val auth: FirebaseAuth
-) : RecyclerView.Adapter<TeacherAdapter.TeacherViewHolder>() {
+) : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
 
-    class TeacherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class LessonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val teacherName: TextView = itemView.findViewById(R.id.student_name)
         val teacherPrice: TextView = itemView.findViewById(R.id.teacher_location)
         val registerButton: Button = itemView.findViewById(R.id.remove_button)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeacherViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardveiw, parent, false)
-        return TeacherViewHolder(view)
+        return LessonViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TeacherViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
 
         val teacher = teacherList[position]
         holder.teacherName.text = teacher.name.toString()

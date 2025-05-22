@@ -31,6 +31,8 @@
         <activity android:name=".View.pickTeacher" />
         <activity android:name=".View.TeacherMain" />
         <activity android:name=".View.StudentListActivity" />
+        <activity android:name=".View.loginTeacher" />
+        <activity android:name=".View.HourOfWork" />
 
     </application>
 

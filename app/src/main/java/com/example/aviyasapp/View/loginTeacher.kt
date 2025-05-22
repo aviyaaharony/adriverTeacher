@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class login : AppCompatActivity() {
+class loginTeacher : AppCompatActivity() {
 
     lateinit var create_acount_link: TextView
     private lateinit var auth: FirebaseAuth
@@ -44,7 +44,7 @@ class login : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
-                    val intent = Intent(this, choise::class.java)
+                    val intent = Intent(this, TeacherMain::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -57,9 +57,12 @@ class login : AppCompatActivity() {
                     ).show()
                 }
             }
+            create_acount_link.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
 
     }
-
         else{
             button.setOnClickListener {
                 Toast.makeText(
@@ -70,9 +73,6 @@ class login : AppCompatActivity() {
             }
         }
     }
-        create_acount_link.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
+
+}
 }
