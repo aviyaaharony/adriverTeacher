@@ -1,7 +1,6 @@
 package com.example.aviyasapp.adapters
 
 import android.content.ContentValues.TAG
-import android.nfc.Tag
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,54 +26,130 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class LessonAdapter(
-    private val teacherList: List<TeacherModel>,
-    private val s : StudentModel,
+    private val lessonList: MutableList<LessonModel>, // Changed to MutableList
     private val auth: FirebaseAuth
 ) : RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
 
     class LessonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val teacherName: TextView = itemView.findViewById(R.id.student_name)
-        val teacherPrice: TextView = itemView.findViewById(R.id.teacher_location)
-        val registerButton: Button = itemView.findViewById(R.id.remove_button)
+        val studentName: TextView = itemView.findViewById(R.id.student_name)
+        val hour: TextView = itemView.findViewById(R.id.hour)
+        val removeButton: Button = itemView.findViewById(R.id.remove_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cardveiw, parent, false)
+            .inflate(R.layout.lesson_card, parent, false)
         return LessonViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
+        val lesson = lessonList[position]
+        holder.studentName.text = lesson.student?.name ?: "Unknown Student"
+        holder.hour.text = lesson.hour.toString()
 
-        val teacher = teacherList[position]
-        holder.teacherName.text = teacher.name.toString()
-        holder.teacherPrice.text = teacher.price.toString()
-        holder.registerButton.setOnClickListener {
-            teacher.students.add(s)
-            updateTeacher(teacher)
+        holder.removeButton.setOnClickListener {
+            // Disable button to prevent multiple clicks
+            holder.removeButton.isEnabled = false
+            updateTeacher(lesson, position, holder)
         }
     }
 
-    private val teacherCollectionRef = com.google.firebase.Firebase.firestore.collection("teacher")
+    private val teacherCollectionRef = Firebase.firestore.collection("teacher")
 
-    override fun getItemCount(): Int = teacherList.size
-    private fun updateTeacher(t: TeacherModel) =
+    override fun getItemCount(): Int = lessonList.size
+
+    private fun updateTeacher(lesson: LessonModel, position: Int, holder: LessonViewHolder) =
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val currentUser = auth.currentUser
                 if (currentUser != null) {
-                    // עדכון חלקי של השדות (merge = true)
-                    teacherCollectionRef.document(t.uid).set(t, SetOptions.merge()).await()
+                    val teacher = retrieveTeachers(currentUser.uid)
+                    if (teacher != null) {
+                        // Remove lesson from teacher's lessons list
+                        val updatedLessons = teacher.lessons.toMutableList()
+                        val lessonToRemove = updatedLessons.find {
+                            it.student?.name == lesson.student?.name &&
+                                    it.hour == lesson.hour
+                        }
 
+                        if (lessonToRemove != null) {
+                            updatedLessons.remove(lessonToRemove)
+                            teacher.lessons = updatedLessons
 
-                }
-            }
-                catch (e: Exception) {
+                            Log.d(TAG, "Updating teacher: $teacher")
+
+                            // Update Firestore
+                            teacherCollectionRef.document(currentUser.uid)
+                                .set(teacher, SetOptions.merge())
+                                .await()
+
+                            // Update UI on main thread
+                            withContext(Dispatchers.Main) {
+                                // Remove from local list and notify adapter
+                                lessonList.removeAt(position)
+                                notifyItemRemoved(position)
+                                notifyItemRangeChanged(position, lessonList.size)
+
+                                // Show success message
+                                Toast.makeText(
+                                    holder.itemView.context,
+                                    "Lesson removed successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                holder.removeButton.isEnabled = true
+                                Toast.makeText(
+                                    holder.itemView.context,
+                                    "Lesson not found",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            holder.removeButton.isEnabled = true
+                            Toast.makeText(
+                                holder.itemView.context,
+                                "Teacher not found",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
                     withContext(Dispatchers.Main) {
-                        Log.d(TAG,"${e}")
+                        holder.removeButton.isEnabled = true
+                        Toast.makeText(
+                            holder.itemView.context,
+                            "User not authenticated",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    holder.removeButton.isEnabled = true
+                    Log.e(TAG, "Error removing lesson: ${e.message}", e)
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Failed to remove lesson: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
 
+    private suspend fun retrieveTeachers(teacherUid: String): TeacherModel? {
+        return try {
+            Log.d(TAG, "Retrieving teacher with UID: $teacherUid")
+            val querySnapshot = teacherCollectionRef.document(teacherUid).get().await()
+            val teacher = querySnapshot.toObject<TeacherModel>()
+            Log.d(TAG, "Retrieved teacher: $teacher")
+            teacher
+        } catch (e: Exception) {
+            Log.e(TAG, "Error retrieving teacher: ${e.message}", e)
+            null
+        }
+    }
 }

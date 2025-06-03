@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">aviya\'s app</string>
+    <string name="book_lesson">קבע שיעור</string>
+    <string name="default_hour">09:00-10:00</string>
 </resources>
+

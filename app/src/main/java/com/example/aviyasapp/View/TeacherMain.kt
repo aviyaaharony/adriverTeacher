@@ -28,7 +28,7 @@ class TeacherMain  : AppCompatActivity() {
             startActivity(intent)
         }
         setLessons.setOnClickListener {
-            val intent = Intent(this, pickdate::class.java)
+            val intent = Intent(this, HourOfWork::class.java)
             startActivity(intent)
         }
 

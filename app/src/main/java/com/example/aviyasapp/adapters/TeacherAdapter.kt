@@ -1,8 +1,6 @@
 package com.example.aviyasapp.adapters
 
-import android.content.ContentValues.TAG
-import android.nfc.Tag
-import android.util.Log
+import StudentModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,70 +8,88 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.aviyasapp.Model.LessonModel
-import StudentModel
 import com.example.aviyasapp.Model.TeacherModel
 import com.example.aviyasapp.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class TeacherAdapter(
-    private val teacherList: List<TeacherModel>,
-    private val s : StudentModel,
-    private val auth: FirebaseAuth
+    private val teachers          : List<TeacherModel>,
+    private val student           : StudentModel,
+    private val assignedTeacherUid: String?,         // null → אין מורה
+    private val auth              : FirebaseAuth,
 ) : RecyclerView.Adapter<TeacherAdapter.TeacherViewHolder>() {
 
-    class TeacherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val teacherName: TextView = itemView.findViewById(R.id.student_name)
-        val teacherPrice: TextView = itemView.findViewById(R.id.teacher_location)
-        val registerButton: Button = itemView.findViewById(R.id.remove_button)
+    /** ------------ ViewHolder ------------ */
+    inner class TeacherViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        val nameTxt : TextView = v.findViewById(R.id.student_name)
+        val priceTxt: TextView = v.findViewById(R.id.teacher_location)
+        val chooseBt: Button   = v.findViewById(R.id.remove_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeacherViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.cardveiw, parent, false)
-        return TeacherViewHolder(view)
+        return TeacherViewHolder(v)
     }
+
+    override fun getItemCount() = teachers.size
 
     override fun onBindViewHolder(holder: TeacherViewHolder, position: Int) {
+        val teacher = teachers[position]
 
-        val teacher = teacherList[position]
-        holder.teacherName.text = teacher.name.toString()
-        holder.teacherPrice.text = teacher.price.toString()
-        holder.registerButton.setOnClickListener {
-            teacher.students.add(s)
-            updateTeacher(teacher)
+        holder.nameTxt.text  = teacher.name
+        holder.priceTxt.text = teacher.price.toString()
+
+        /* --- אם כבר משויך מורה --- */
+        if (assignedTeacherUid != null) {
+            holder.chooseBt.text =
+                if (teacher.uid == assignedTeacherUid) "נרשמת" else "כבר יש לך מורה"
+            holder.chooseBt.isEnabled = false
+            return
+        }
+
+        /* --- אין מורה משויך → אפשר לבחור --- */
+        holder.chooseBt.setOnClickListener {
+            registerToTeacher(teacher, holder)
         }
     }
 
-    private val teacherCollectionRef = com.google.firebase.Firebase.firestore.collection("teacher")
-
-    override fun getItemCount(): Int = teacherList.size
-    private fun updateTeacher(t: TeacherModel) =
+    /* ------------ לוגיקת בחירה ------------ */
+    private fun registerToTeacher(teacher: TeacherModel, holder: TeacherViewHolder) =
         CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val currentUser = auth.currentUser
-                if (currentUser != null) {
-                    // עדכון חלקי של השדות (merge = true)
-                    teacherCollectionRef.document(t.uid).set(t, SetOptions.merge()).await()
 
+            // בדיקה מתגוננת: אולי בזמן הלחיצה נוסף מורה
+            val exists = Firebase.firestore.collection("teacher")
+                .whereArrayContains("students", mapOf("uid" to student.uid))
+                .get().await().documents.isNotEmpty()
+            if (exists) return@launch
 
+            /* 1. הוספת התלמיד למערך students */
+            val newStudents = teacher.students.toMutableList().apply { add(student) }
+            Firebase.firestore.collection("teacher")
+                .document(teacher.uid)
+                .update("students", newStudents)
+                .await()
+
+            /* 2. עדכון UI */
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "נרשמת בהצלחה למורה ${teacher.name}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                // נועל את כל הכפתורים בריסייקלר
+                (holder.itemView.parent as? RecyclerView)?.adapter?.let {
+                    (it as TeacherAdapter).assignedTeacherUidInternal = teacher.uid
+                    it.notifyDataSetChanged()
                 }
             }
-                catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Log.d(TAG,"${e}")
-                    }
-                }
-
         }
 
+    /* משתנה פנימי כדי לנעול כפתורים אחרי ההוספה */
+    private var assignedTeacherUidInternal: String? = assignedTeacherUid
 }

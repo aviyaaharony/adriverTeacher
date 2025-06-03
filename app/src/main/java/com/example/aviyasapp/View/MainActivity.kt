@@ -111,10 +111,10 @@ class MainActivity<FirebaseUser> : AppCompatActivity() {
 
     private fun saveUser(email: String, isTeacher: Boolean) =
         CoroutineScope(Dispatchers.IO).launch {
-            val student = StudentModel(email, isTeacher)
+            val student = StudentModel(email, isTeacher,username.text.toString(),birthdate.text.toString(),auth.uid.toString())
             if (!isTeacher) {
                 try {
-                    userCollectionRef.add(student).await()
+                    userCollectionRef.document(auth.currentUser?.uid.toString()).set(student).await()
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@MainActivity,
